@@ -15,8 +15,9 @@ class Tabuleiro:
         for i in range(self.tamanho):
             print(i, ' '.join(self.matriz[i]))
 
-    def validar_tiro(self, linha, coluna):
-        if linha < 0 or linha >= self.tamanho or coluna < 0 or coluna >= self.tamanho:
+    def validar_tiro(self, linha, coluna_str):
+        coluna_idx = ord(coluna_str) - ord('A')
+        if linha < 0 or linha >= self.tamanho or coluna_idx < 0 or coluna_idx >= self.tamanho:
             return False
         return True
 

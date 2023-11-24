@@ -15,7 +15,7 @@ class Jogo:
             coluna = input("Informe a coluna (A-J): ")
 
             if not self.tabuleiro.validar_tiro(linha, coluna):
-                print("Tiro inválido. Tente novamente.")
+                print("\nTiro inválido. Tente novamente.\n")
                 continue
 
             self.fazer_tiro(linha, coluna)
