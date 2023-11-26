@@ -11,15 +11,15 @@ NaviosTotal = {'P': 1, 'C': 1, 'T': 2, 'R': 3}
 coluna_letra_para_numero = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9}
 
 # Função para criar o tabuleiro com os navios
-def criar_tabuleiro_navios():
+def criarTabuleiroNavios():
     return [[' ' for _ in range(TamanhoDoTabuleiro)] for _ in range(TamanhoDoTabuleiro)]
 
 # Função para criar o tabuleiro vazio
-def criar_tabuleiro_vazio():
+def criarTabuleiroVazio():
     return [[' ' for _ in range(TamanhoDoTabuleiro)] for _ in range(TamanhoDoTabuleiro)]
 
 # Função para imprimir o tabuleiro
-def imprimir_tabuleiro(tabuleiro):
+def imprimirTabuleiro(tabuleiro):
     print("  A B C D E F G H I J")
     for i in range(TamanhoDoTabuleiro):
         linha_exibicao = [str(i)]  # Adiciona o número da linha
@@ -28,7 +28,7 @@ def imprimir_tabuleiro(tabuleiro):
         print(' '.join(linha_exibicao))
 
 # Função para verificar se uma posição está vazia e não se choca com outros navios
-def posicao_valida(tabuleiro, linha, coluna, tamanho, direcao):
+def posicaoValida(tabuleiro, linha, coluna, tamanho, direcao):
     for i in range(tamanho):
         nova_linha = linha + i * direcao[0]
         nova_coluna = coluna + i * direcao[1]
@@ -59,7 +59,7 @@ def posicao_valida(tabuleiro, linha, coluna, tamanho, direcao):
     return True
 
 # Função para posicionar os navios no tabuleiro
-def posicionar_navios(tabuleiro):
+def posicionarNavios(tabuleiro):
     for navio, quantidade in NaviosTotal.items():
         for _ in range(quantidade):
             tentativas = 0
@@ -70,7 +70,7 @@ def posicionar_navios(tabuleiro):
                 coluna = random.randint(0, TamanhoDoTabuleiro - 1)
 
                 # Verifica se é possível posicionar o navio naquela direção
-                if posicao_valida(tabuleiro, linha, coluna, NaviosTamanho[navio], direcao):
+                if posicaoValida(tabuleiro, linha, coluna, NaviosTamanho[navio], direcao):
                     for i in range(NaviosTamanho[navio]):
                         nova_linha = linha + i * direcao[0]
                         nova_coluna = coluna + i * direcao[1]
@@ -78,14 +78,14 @@ def posicionar_navios(tabuleiro):
                     break
 
 # Função para verificar se o jogador acertou um navio
-def verificar_tiro(tabuleiro_navios, tabuleiro_tiros, linha, coluna, mostrar_navios):
+def verificarTiro(tabuleiro_navios, tabuleiro_tiros, linha, coluna, mostrar_navios):
     if tabuleiro_navios[linha][coluna] != ' ' and tabuleiro_tiros[linha][coluna] != 'X':
         navio = tabuleiro_navios[linha][coluna]
         tabuleiro_tiros[linha][coluna] = navio  # Marcar como atingido
         if mostrar_navios:            
-            imprimir_tabuleiro(tabuleiro_navios)  # Imprimir o tabuleiro após o acerto
+            imprimirTabuleiro(tabuleiro_navios)  # Imprimir o tabuleiro após o acerto
         else:
-            imprimir_tabuleiro(tabuleiro_tiros)  # Imprimir o tabuleiro após o acerto
+            imprimirTabuleiro(tabuleiro_tiros)  # Imprimir o tabuleiro após o acerto
 
         print(f"\nAcertou um navio: {navio}")
 
@@ -97,25 +97,25 @@ def verificar_tiro(tabuleiro_navios, tabuleiro_tiros, linha, coluna, mostrar_nav
         print("\nÁgua! Você errou o tiro.\n")
 
         if mostrar_navios:            
-            imprimir_tabuleiro(tabuleiro_navios)  # Imprimir o tabuleiro após o acerto
+            imprimirTabuleiro(tabuleiro_navios)  # Imprimir o tabuleiro após o erro
         else:
-            imprimir_tabuleiro(tabuleiro_tiros)  # Imprimir o tabuleiro após o erro
+            imprimirTabuleiro(tabuleiro_tiros)  # Imprimir o tabuleiro após o erro
         return None    
 
 # Função principal do jogo
-def jogo_batalha_naval(mostrar_navios=True):
-    tabuleiro_navios = criar_tabuleiro_navios()
-    tabuleiro_tiros = criar_tabuleiro_vazio()
+def jogar(mostrar_navios=True):
+    tabuleiro_navios = criarTabuleiroNavios()
+    tabuleiro_tiros = criarTabuleiroVazio()
 
-    posicionar_navios(tabuleiro_navios)
+    posicionarNavios(tabuleiro_navios)
 
     vidas = VidasIniciais
     tiros_consecutivos = 0
 
     if mostrar_navios:
-        imprimir_tabuleiro(tabuleiro_navios)
+        imprimirTabuleiro(tabuleiro_navios)
     else:
-        imprimir_tabuleiro(tabuleiro_tiros)
+        imprimirTabuleiro(tabuleiro_tiros)
 
     while vidas > 0:
         print(f"\nVidas restantes: {vidas}")
@@ -126,7 +126,7 @@ def jogo_batalha_naval(mostrar_navios=True):
         # Converte a letra da coluna para o número correspondente
         coluna = coluna_letra_para_numero.get(coluna_letra.upper())
 
-        resultado_tiro = verificar_tiro(tabuleiro_navios, tabuleiro_tiros, linha, coluna, mostrar_navios)
+        resultado_tiro = verificarTiro(tabuleiro_navios, tabuleiro_tiros, linha, coluna, mostrar_navios)
 
         if resultado_tiro:
             tiros_consecutivos += 1
@@ -149,5 +149,4 @@ def jogo_batalha_naval(mostrar_navios=True):
     if vidas == 0:
         print("\nSuas vidas acabaram. Você precisa treinar mais.")
 
-if __name__ == "__main__":
-    jogo_batalha_naval()
+jogar()
