@@ -1,0 +1,31 @@
+﻿@model QuestionModel
+
+@{
+    ViewBag.Title = "Criar Nova Questão";
+}
+
+<h2>Criar Nova Questão</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Question)
+    @Html.TextBoxFor(model => model.Question)
+
+    <h3>Opções de Resposta</h3>
+    @for (int i = 0; i < Model.Options.Count; i++)
+    {
+        <div class="option">
+            @Html.LabelFor(model => Model.Options[i].Answer)
+            @Html.TextBoxFor(model => Model.Options[i].Answer)
+            @Html.CheckBoxFor(model => Model.Options[i].IsCorrect)
+        </div>
+    }
+
+    <input type="submit" value="Salvar">
+}
+
+<style>
+    .option {
+        margin-bottom: 10px;
+    }
+</style>

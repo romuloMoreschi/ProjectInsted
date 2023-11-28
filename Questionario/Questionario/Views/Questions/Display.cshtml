@@ -1,0 +1,29 @@
+﻿@model List<QuestionModel>
+
+<h2>Questões</h2>
+
+@{
+    var questionNumber = 1;
+}
+
+@foreach (var question in Model)
+{
+    var questionId = question.Id;
+    <div class="question">
+        <p>@questionNumber) @question.Question</p>
+        <ul class="options">
+            @{
+                var currentLetter = 'A';
+                foreach (var option in question.Options)
+                {
+                    <li>
+                        <input type="radio" name="question@(questionId)" id="option@(option.Id)" data-question-id="@questionId" data-option-id="@option.Id" />
+                        <label for="option@(option.Id)">@currentLetter. @option.Answer</label>
+                    </li>
+                    currentLetter++;
+                }
+            }
+        </ul>
+    </div>
+    questionNumber++;
+}

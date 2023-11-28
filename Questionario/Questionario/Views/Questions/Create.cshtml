@@ -1,0 +1,139 @@
+﻿@model QuestionModel
+
+@{
+    ViewBag.Title = "Criar Nova Questão";
+}
+
+<h2 style="text-align: center;">Criar Nova Questão</h2>
+
+<style>
+    /* Estilos para o formulário */
+    .form-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    /* Estilos para o campo de pergunta */
+    #questionField {
+        width: 100%;
+        height: 150px;
+        resize: vertical;
+    }
+
+    /* Estilos para o botão "Adicionar Opções" */
+    #numOptions {
+        width: 60px;
+    }
+
+    #addOptions {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+        #addOptions:hover {
+            background-color: #0056b3;
+        }
+
+    /* Estilos para as opções de resposta */
+    .option {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+    /* Estilos para o botão "Salvar" */
+    #saveButton {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        #saveButton:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="form-container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.Question)
+            @Html.TextAreaFor(model => model.Question, new { @class = "form-control", id = "questionField" })
+        </div>
+
+        <div class="form-group">
+            <label for="numOptions">Número de Opções de Resposta</label>
+            <input type="number" id="numOptions" name="numOptions" class="form-control" />
+        </div>
+
+        <button type="button" id="addOptions">Adicionar Opções</button>
+
+        <div id="optionsContainer">
+            <!-- Campos de opções de resposta serão adicionados aqui dinamicamente -->
+        </div>
+
+        <div style="margin-top: 20px;">
+            <input type="submit" value="Salvar" class="btn btn-primary" id="saveButton" />
+        </div>
+    }
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var addOptionsButton = document.getElementById("addOptions");
+        var optionsContainer = document.getElementById("optionsContainer");
+
+        addOptionsButton.addEventListener("click", function () {
+            var numOptions = document.getElementById("numOptions").value;
+            numOptions = parseInt(numOptions);
+
+            if (!isNaN(numOptions) && numOptions > 0) {
+                for (var i = 0; i < numOptions; i++) {
+                    var optionIndex = optionsContainer.children.length;
+                    var optionHtml = `
+                                <div class="option">
+                                    <div class="form-group">
+                                        <label for="Options[${optionIndex}].Answer">Opção ${optionIndex + 1}</label>
+                                        <input type="text" id="Options[${optionIndex}].Answer" name="Options[${optionIndex}].Answer" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Options[${optionIndex}].Correct">Correta?</label>
+                                        <input type="checkbox" id="Options[${optionIndex}].Correct" name="Options[${optionIndex}].Correct" />
+                                    </div>
+                                </div>
+                            `;
+                    optionsContainer.insertAdjacentHTML("beforeend", optionHtml);
+                }
+            } else {
+                alert("Por favor, insira um número válido de opções.");
+            }
+        });
+    });
+</script>
