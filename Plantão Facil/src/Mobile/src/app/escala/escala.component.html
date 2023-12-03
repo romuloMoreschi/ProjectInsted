@@ -1,0 +1,41 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Escalas</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-item>
+      <ion-icon name="add-outline"></ion-icon>
+      <ion-label style="margin-left: 10px;">Nova escala</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let e of escalas">
+      <ion-label>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="10">
+              <strong>Nome</strong>
+            </ion-col>
+            <ion-col size="2">
+              <strong>Escala</strong>
+            </ion-col>
+          </ion-row>          
+          <ion-row *ngFor="let funcionario of e.funcionarios">
+            <ion-col size="10" class="alinhar">
+              <img *ngIf="funcionario.nome != 'Escala vazia'" src="https://ionicframework.com/docs/img/demos/avatar.svg" style="width: 15px; height: 15px;" />
+              <ion-icon *ngIf="funcionario.nome === 'Escala vazia'" name="add-outline" (click)="adicionarFuncionario()"></ion-icon>
+              {{ funcionario.nome }}
+            </ion-col>
+            <ion-col size="2">
+              {{ e.id }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label>
+    </ion-item>
+    
+  </ion-content>
+</div>

@@ -32,6 +32,7 @@ public static class InjectorManager
             cfg.CreateMap<Escala, EscalaDto>().ReverseMap();
             cfg.CreateMap<CreateEscaleViewModel, EscalaDto>().ReverseMap();
 
+            cfg.CreateMap<Funcionario, FuncionarioDto>().ReverseMap();
         });
 
         services.AddSingleton(autoMapperConfig.CreateMapper());
@@ -46,5 +47,6 @@ public static class InjectorManager
     {
         services.AddScoped<IVagaService, VagaService>();
         services.AddScoped<IEscalaService, EscalaService>();
+        services.AddScoped<IFuncionarioService, FuncionarioService>();
     }
 }

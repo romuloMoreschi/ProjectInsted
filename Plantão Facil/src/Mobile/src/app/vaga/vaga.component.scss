@@ -1,15 +1,13 @@
 ion-row {
     border: 1px solid #ddd;
-    
+
     ion-col {
         position: relative;
         padding: 8px; // Ajuste o padding conforme necessário
 
-        .alinhar{            
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &::after {
             content: '';

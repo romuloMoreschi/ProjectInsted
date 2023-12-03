@@ -12,38 +12,32 @@
       <ion-icon name="add-outline"></ion-icon>
       <ion-label style="margin-left: 10px;">Novo funcionario</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item *ngFor="let f of funcionarios">
       <ion-label>
         <ion-grid>
           <ion-row>
+            <ion-col size="6">
+              <strong>Nome</strong>
+            </ion-col>
+            <ion-col size="3">
+              <strong>Pontuação</strong>
+            </ion-col>
+            <ion-col size="3">
+              <strong>Situação</strong>
+            </ion-col>
+          </ion-row>  
+          <ion-row size="6">
             <ion-col>
               <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg"
                 style="width: 15px; height: 15px;" />
-              Leandro
+                {{ f.nome }}
             </ion-col>
-            <ion-col>
-              Escala 288
+            <ion-col size="3" class="alinhar">
+               {{ f.pontuacao }}
             </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                style="width: 15px; height: 15px;" />
-              Romulo
-            </ion-col>
-            <ion-col>
-              Disponivel
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                style="width: 15px; height: 15px;" />
-              José
-            </ion-col>
-            <ion-col>
-              Escala 19
-            </ion-col>
+            <ion-col size="3" class="alinhar">
+              {{ f.situacaoId }}
+            </ion-col>          
           </ion-row>
         </ion-grid>
       </ion-label>

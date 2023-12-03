@@ -28,6 +28,6 @@ public class FuncionarioMap : IEntityTypeConfiguration<Funcionario>
 
         builder.HasOne(f => f.Situacao).WithMany().HasForeignKey(f => f.SituacaoId);
 
-        builder.HasMany(f => f.Escalas).WithMany(e => e.Funcionarios);
+        builder.HasOne(v => v.Escala).WithMany(x => x.Funcionarios).HasForeignKey(x => x.EscalaId);
     }
 }

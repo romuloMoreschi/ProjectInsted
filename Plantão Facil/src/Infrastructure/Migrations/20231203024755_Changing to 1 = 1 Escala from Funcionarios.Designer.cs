@@ -4,6 +4,7 @@ using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(PlantaoFacilContext))]
-    partial class PlantaoFacilContextModelSnapshot : ModelSnapshot
+    [Migration("20231203024755_Changing to 1 = 1 Escala from Funcionarios")]
+    partial class Changingto11EscalafromFuncionarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,12 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("DataTermino")
                         .HasColumnType("datetime2");
+
+                    b.Property<long>("FuncionarioId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("VagaId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

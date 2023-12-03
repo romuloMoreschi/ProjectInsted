@@ -18,7 +18,8 @@ public class EscalaMap : IEntityTypeConfiguration<Escala>
             .HasForeignKey(e => e.EscalaId);
 
         builder
-            .HasMany(e => e.Funcionarios)
-            .WithMany(f => f.Escalas);
+        .HasMany(e => e.Funcionarios)
+        .WithOne(e => e.Escala)
+        .HasForeignKey(e => e.EscalaId);
     }
 }
