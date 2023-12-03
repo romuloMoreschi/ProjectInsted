@@ -1,0 +1,23 @@
+ion-row {
+    border: 1px solid #ddd;
+
+    ion-col {
+        position: relative;
+        padding: 8px; // Ajuste o padding conforme necessário
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 1px;
+            background-color: #ddd;
+            transform: translateX(50%);
+        }
+
+        &:last-child::after {
+            display: none; 
+        }
+    }
+}

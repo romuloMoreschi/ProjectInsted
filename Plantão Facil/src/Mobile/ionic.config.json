@@ -1,0 +1,7 @@
+{
+  "name": "PlantaoFacil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
