@@ -7,4 +7,5 @@ public class VagaDto
     public string Funcao { get; set; } = null!;
     public int NumeroVagasDisponiveis { get; set; }
     public int SituacaoId  { get; set; }
+    public int EscalaId { get; set; }
 }

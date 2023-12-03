@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(PlantaoFacilContext))]
-    [Migration("20231202145452_Changing to 1 = 1 Escala from Vagas")]
-    partial class Changingto11EscalafromVagas
+    [Migration("20231203164514_Initials")]
+    partial class Initials
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,12 +38,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime>("DataTermino")
                         .HasColumnType("datetime2");
-
-                    b.Property<long>("FuncionarioId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("VagaId")
-                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -82,11 +76,18 @@ namespace Infrastructure.Migrations
                     b.Property<long>("SituacaoId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("VagaId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EscalaId");
 
                     b.HasIndex("RoleId");
 
                     b.HasIndex("SituacaoId");
+
+                    b.HasIndex("VagaId");
 
                     b.ToTable("Funcionarios", (string)null);
                 });
@@ -161,23 +162,14 @@ namespace Infrastructure.Migrations
                     b.ToTable("Vagas", (string)null);
                 });
 
-            modelBuilder.Entity("EscalaFuncionario", b =>
-                {
-                    b.Property<long>("EscalasId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("FuncionariosId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("EscalasId", "FuncionariosId");
-
-                    b.HasIndex("FuncionariosId");
-
-                    b.ToTable("EscalaFuncionario");
-                });
-
             modelBuilder.Entity("Domain.Entities.Funcionario", b =>
                 {
+                    b.HasOne("Domain.Entities.Escala", "Escala")
+                        .WithMany("Funcionarios")
+                        .HasForeignKey("EscalaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Domain.Entities.Role", "Role")
                         .WithMany("Funcionarios")
                         .HasForeignKey("RoleId")
@@ -190,9 +182,17 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Vaga", "Vaga")
+                        .WithMany("Funcionarios")
+                        .HasForeignKey("VagaId");
+
+                    b.Navigation("Escala");
+
                     b.Navigation("Role");
 
                     b.Navigation("Situacao");
+
+                    b.Navigation("Vaga");
                 });
 
             modelBuilder.Entity("Domain.Entities.Vaga", b =>
@@ -214,27 +214,19 @@ namespace Infrastructure.Migrations
                     b.Navigation("Situacao");
                 });
 
-            modelBuilder.Entity("EscalaFuncionario", b =>
-                {
-                    b.HasOne("Domain.Entities.Escala", null)
-                        .WithMany()
-                        .HasForeignKey("EscalasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Funcionario", null)
-                        .WithMany()
-                        .HasForeignKey("FuncionariosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Domain.Entities.Escala", b =>
                 {
+                    b.Navigation("Funcionarios");
+
                     b.Navigation("Vagas");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Navigation("Funcionarios");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Vaga", b =>
                 {
                     b.Navigation("Funcionarios");
                 });

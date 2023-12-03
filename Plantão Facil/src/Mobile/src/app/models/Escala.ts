@@ -1,16 +1,5 @@
-export class Funcionario {
-    public nome: string;
-    public sexo: string;
-    public pontuacao: number;
-    public situacaoId: number;
-
-    constructor(nome: string, sexo: string, pontuacao: number, situacaoId: number) {
-        this.nome = nome;
-        this.sexo = sexo;
-        this.pontuacao = pontuacao;
-        this.situacaoId = situacaoId;
-    }
-}
+import { Funcionario } from "./Funcionario";
+import { Vaga } from "./Vaga";
 
 export class Escala {
     public id: number;
@@ -19,6 +8,7 @@ export class Escala {
     public funcionarioId: number;
     public vagaId: number;
     public funcionarios: Funcionario[]; 
+    public vagas: Vaga[]; 
 
     constructor() {
         this.id = 0;
@@ -27,5 +17,6 @@ export class Escala {
         this.funcionarioId = 0;
         this.vagaId = 0;
         this.funcionarios = [];
+        this.vagas = [];
     }
 }

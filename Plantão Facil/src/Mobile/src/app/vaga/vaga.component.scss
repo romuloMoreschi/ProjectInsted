@@ -1,9 +1,10 @@
 ion-row {
     border: 1px solid #ddd;
+    height: 100%;
 
     ion-col {
         position: relative;
-        padding: 8px; // Ajuste o padding conforme necessário
+        padding: 8px;
 
         display: flex;
         align-items: center;

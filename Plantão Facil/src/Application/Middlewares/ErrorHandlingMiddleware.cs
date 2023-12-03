@@ -41,6 +41,6 @@ public class ErrorHandlingMiddleware
 
     private static (HttpStatusCode StatusCode, string Message) GetExceptionDetails(Exception ex)
     {
-        return (HttpStatusCode.InternalServerError, ex.Message);
+        return (HttpStatusCode.InternalServerError, ex.InnerException.Message);
     }
 }

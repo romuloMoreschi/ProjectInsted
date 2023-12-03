@@ -73,6 +73,9 @@ namespace Infrastructure.Migrations
                     b.Property<long>("SituacaoId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("VagaId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EscalaId");
@@ -80,6 +83,8 @@ namespace Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.HasIndex("SituacaoId");
+
+                    b.HasIndex("VagaId");
 
                     b.ToTable("Funcionarios", (string)null);
                 });
@@ -174,11 +179,17 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Entities.Vaga", "Vaga")
+                        .WithMany("Funcionarios")
+                        .HasForeignKey("VagaId");
+
                     b.Navigation("Escala");
 
                     b.Navigation("Role");
 
                     b.Navigation("Situacao");
+
+                    b.Navigation("Vaga");
                 });
 
             modelBuilder.Entity("Domain.Entities.Vaga", b =>
@@ -208,6 +219,11 @@ namespace Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
+                {
+                    b.Navigation("Funcionarios");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Vaga", b =>
                 {
                     b.Navigation("Funcionarios");
                 });

@@ -10,9 +10,11 @@
   <ion-content> 
     <ion-item>
       <ion-label>
-        <h2>Configurações</h2>
-        <p>Paragraph</p>
+        <h1>Modo dark</h1>
       </ion-label>
+      <ion-toggle slot="end" mode="ios" [checked]="darkMode"
+      (ionChange)="toggleDarkMode()"> 
+      </ion-toggle>
     </ion-item>
   </ion-content>
 </div>

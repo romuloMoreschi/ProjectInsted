@@ -13,7 +13,9 @@ public class Funcionario : Base
     public Role Role { get; set; } = null!;
     public long SituacaoId  { get; set; }
     public Situacao Situacao { get; set; } = null!;
-    
+    public long? VagaId { get; set; }
+    public Vaga? Vaga { get; set; } = null!;
+
     public override bool Validate()
     {
         return true;

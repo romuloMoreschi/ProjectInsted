@@ -35,6 +35,55 @@ public class VagasController : ControllerBase
         });
     }
 
+    [HttpPut]
+    [Route("update/")]
+    public async Task<IActionResult> Update([FromBody] UpdateJobViewModel jobViewModel)
+    {
+        var jobDto = _mapper.Map<VagaDto>(jobViewModel);
+
+        var jobUpdated = await _vagasService.Update(jobDto);
+
+        return Ok(new ResultViewModel
+        {
+            Message = "Marca atualizada com sucesso!",
+            Data = jobUpdated
+        });
+    }
+
+    [HttpDelete]
+    [Route("remove/{id}")]
+    public async Task<IActionResult> Remove(long id)
+    {
+        await _vagasService.Remove(id);
+
+        return Ok(new ResultViewModel
+        {
+            Message = "Vaga removida com sucesso!",
+            Data = null
+        });
+    }
+
+    [HttpGet]
+    [Route("get/{id}")]
+    public async Task<IActionResult> Get(long id)
+    {
+        var job = await _vagasService.Get(id);
+
+        if (job == null)
+            return Ok(new ResultViewModel
+            {
+                Message = "Nenhuma vaga foi encontrado com o ID informado.",
+                Data = job
+            });
+
+        return Ok(new ResultViewModel
+        {
+            Message = "Vaga encontrada com sucesso!",
+            Data = job
+        });
+    }
+
+
     [HttpGet]
     [Route("get-all")]
     public async Task<IActionResult> Get(int skip = 0, int take = 10)

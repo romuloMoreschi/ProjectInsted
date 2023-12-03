@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 
 namespace Infrastructure.Mappings;
 
@@ -25,6 +26,8 @@ public class FuncionarioMap : IEntityTypeConfiguration<Funcionario>
             .HasDefaultValue(1000);
 
         builder.HasOne(f => f.Role).WithMany(x => x.Funcionarios).HasForeignKey(f => f.RoleId);
+
+        builder.HasOne(f => f.Vaga).WithMany(v => v.Funcionarios).HasForeignKey(f => f.VagaId);
 
         builder.HasOne(f => f.Situacao).WithMany().HasForeignKey(f => f.SituacaoId);
 

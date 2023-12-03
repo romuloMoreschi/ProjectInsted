@@ -4,7 +4,6 @@ using CrossCutting.Dtos;
 using Domain.Entities;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Application.Services;
 
@@ -58,7 +57,7 @@ public class EscalaService : IEscalaService
     public async Task<List<EscalaDto>> Get(int skip, int take)
     {
         static IQueryable<Escala> includes(IQueryable<Escala> query) =>
-            query.Include(x => x.Vagas).Include(x => x.Funcionarios);
+            query.Include(x => x.Funcionarios).ThenInclude(x => x.Vaga);
 
         var allEscales = await _escalaRepository.GetAll(skip, take, includes);
 

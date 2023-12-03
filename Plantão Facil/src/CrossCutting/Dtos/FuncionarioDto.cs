@@ -10,7 +10,7 @@ public class FuncionarioDto
 
     public int Pontuacao { get; set; }
 
-    //public Role MyProperty { get; set; }
+    public VagaDto? Vaga { get; set; }
 
     public int SituacaoId { get; set; }
 }

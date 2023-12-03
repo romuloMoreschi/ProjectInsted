@@ -2,8 +2,11 @@
 
 namespace Application.ViewModels.Vagas;
 
-public class CreateJobViewModel
+public class UpdateJobViewModel
 {
+    [Required(ErrorMessage = "O id não pode ser vazio.")]
+    public long Id { get; set; }
+
     [Required(ErrorMessage = "O horario não pode ser vazio.")]
     public DateTime Horario { get; set; }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Funcionario } from '../models/Escala';
+import { Funcionario } from '../models/Funcionario';
 import { ApiService } from '../config-service/config.services';
 import { HttpClient } from '@angular/common/http';
 

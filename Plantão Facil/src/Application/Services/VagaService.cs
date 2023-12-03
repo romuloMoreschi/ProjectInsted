@@ -29,14 +29,11 @@ public class VagaService : IVagaService
         return _mapper.Map<VagaDto>(jobCreated);
     }
 
-    public async Task<VagaDto> Update(VagaDto vagaDto, long id)
+    public async Task<VagaDto> Update(VagaDto vagaDto)
     {
         var jobExists = await _vagaRepository.GetById(vagaDto.Id);
 
-        if (jobExists == null)
-            throw new Exception("Não existe nenhuma vaga com o id informado!");
-
-        if (jobExists.Id != id) throw new Exception("O id informado não confere com o id da vaga!");
+        if (jobExists == null) throw new Exception("Não existe nenhuma vaga com o id informado!");
 
         var job = _mapper.Map<Vaga>(vagaDto);
 

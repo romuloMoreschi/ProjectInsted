@@ -2,14 +2,16 @@ export class Vaga {
     public id: number;
     public horario: Date;
     public funcao: string;
-    public numeroVagasDisponiveis: number;
+    public numeroVagasDisponiveis: number | null;
     public situacaoId: number;
+    public escalaId: number;
 
-    constructor(id: number, horario: Date, funcao: string, numeroVagasDisponiveis: number, situacaoId: number) {
-        this.id = id;
-        this.horario = horario;
-        this.funcao = funcao;
-        this.numeroVagasDisponiveis = numeroVagasDisponiveis;
-        this.situacaoId = situacaoId;
+    constructor() {
+        this.id = 0;
+        this.horario =  new Date;
+        this.funcao = '';
+        this.numeroVagasDisponiveis = null;
+        this.situacaoId = 1;
+        this.escalaId = 0;
     }
 }

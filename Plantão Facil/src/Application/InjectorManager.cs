@@ -28,6 +28,7 @@ public static class InjectorManager
         {
             cfg.CreateMap<Vaga, VagaDto>().ReverseMap();
             cfg.CreateMap<CreateJobViewModel, VagaDto>().ReverseMap();
+            cfg.CreateMap<UpdateJobViewModel, VagaDto>().ReverseMap();
 
             cfg.CreateMap<Escala, EscalaDto>().ReverseMap();
             cfg.CreateMap<CreateEscaleViewModel, EscalaDto>().ReverseMap();

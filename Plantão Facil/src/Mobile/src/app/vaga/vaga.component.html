@@ -9,37 +9,46 @@
   </ion-header>
   <ion-content>
     <ion-item>
-      <ion-icon name="add-outline"></ion-icon>
-      <ion-label style="margin-left: 10px;">Nova vaga</ion-label>
+      <ion-icon name="add-outline" (click)="adicionarVaga()"></ion-icon>
+      <ion-label style="margin-left: 10px;" (click)="adicionarVaga()">Nova vaga</ion-label>
+      <ion-icon name="refresh-outline" (click)="atualizarPagina()"></ion-icon>
     </ion-item>
-    <ion-item *ngFor="let v of vagas">
+    <ion-item>
       <ion-label>
         <ion-grid>
           <ion-row>
-            <ion-col size="4">
+            <ion-col size="3.80">
               <strong>Função</strong>
             </ion-col>
-            <ion-col size="5">
+            <ion-col size="4.5">
               <strong>Data e hora</strong>
             </ion-col>
-            <ion-col size="3">
+            <ion-col size="1.65">
               <strong>Total</strong>
             </ion-col>
+            <ion-col size="2.05">
+              <strong>Ações</strong>
+            </ion-col>
           </ion-row>          
-          <ion-row >
-            <ion-col size="4">
+          <ion-row *ngFor="let v of vagas">
+            <ion-col size="3.80">
               {{ v.funcao }}
             </ion-col>
-            <ion-col size="5">
+            <ion-col size="4.5">
               {{ v.horario }}
             </ion-col>
-            <ion-col size="3">
+            <ion-col size="1.65">
               {{ v.numeroVagasDisponiveis }}
+            </ion-col>
+            <ion-col size="1.025" (click)="atualizar(v)">
+              <ion-icon color="warning" name="pencil-outline"></ion-icon>
+            </ion-col>
+            <ion-col size="1.025" role="button" (click)="deletar(v.id)">
+              <ion-icon color="danger" name="trash-outline"></ion-icon>
             </ion-col>
           </ion-row> 
         </ion-grid>
       </ion-label>
-    </ion-item>
-    
+    </ion-item>    
   </ion-content>
 </div>
