@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -16,9 +17,9 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DataInicial = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataTermino = table.Column<DateTime>(type: "datetime2", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    DataInicial = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DataTermino = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,8 +31,8 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,8 +44,8 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -56,10 +57,10 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Horario = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Funcao = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    NumeroVagasDisponiveis = table.Column<int>(type: "int", nullable: false),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Horario = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Funcao = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    NumeroVagasDisponiveis = table.Column<int>(type: "integer", nullable: false),
                     SituacaoId = table.Column<long>(type: "bigint", nullable: false),
                     EscalaId = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -85,10 +86,10 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Sexo = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
-                    Pontuacao = table.Column<int>(type: "int", nullable: false, defaultValue: 1000),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    Sexo = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
+                    Pontuacao = table.Column<int>(type: "integer", nullable: false, defaultValue: 1000),
                     EscalaId = table.Column<long>(type: "bigint", nullable: false),
                     RoleId = table.Column<long>(type: "bigint", nullable: false),
                     SituacaoId = table.Column<long>(type: "bigint", nullable: false),

@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  plantaofacil:
+    image: plantaofacil
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5183"

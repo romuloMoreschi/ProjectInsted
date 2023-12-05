@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using AutoMapper;
+using CrossCutting.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using PontoServico.Application.ViewModels;
 

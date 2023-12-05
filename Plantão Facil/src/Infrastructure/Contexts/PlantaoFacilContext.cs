@@ -14,9 +14,9 @@ public class PlantaoFacilContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PlantaoFacil;Trusted_Connection=True;MultipleActiveResultSets=true;");
+        optionsBuilder.UseNpgsql("Host=postgresql.kayotimoteo.dev; Username=romulo; Password=8b4744478c76d4375459d217becf47c9; Database=plantaofacil");
     }
-    
+
     public virtual required DbSet<Role> Roles { get; set; }
     
     public virtual required DbSet<Vaga> Vagas { get; set; }
