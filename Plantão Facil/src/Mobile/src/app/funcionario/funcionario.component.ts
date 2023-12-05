@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./funcionario.component.scss'],
 })
 export class FuncionarioComponent implements OnInit {
-  private endpoint = 'https://localhost:7051/api/employees';
+  private endpoint = 'http://206.189.184.232:5000/api/employees';
   private apiService: ApiService<Funcionario>;
 
   funcionarios: Funcionario[] = [];

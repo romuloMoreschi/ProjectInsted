@@ -12,7 +12,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./vaga.component.scss'],
 })
 export class VagaComponent implements OnInit {
-  private endpoint = 'https://localhost:7051/api/jobs';
+  private endpoint = 'http://206.189.184.232:5000/api/jobs';
   private apiService: ApiService<Vaga>;
 
   vagas: Vaga[] = [];

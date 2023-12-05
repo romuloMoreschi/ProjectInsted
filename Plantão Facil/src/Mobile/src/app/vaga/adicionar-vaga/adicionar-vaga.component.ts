@@ -12,7 +12,7 @@ import { Vaga } from 'src/app/models/Vaga';
   styleUrls: ['./adicionar-vaga.component.scss'],
 })
 export class AdicionarVagaComponent implements OnInit {
-  private endpoint = 'https://localhost:7051/api/jobs';
+  private endpoint = 'http://206.189.184.232:5000/api/jobs';
   private apiService: ApiService<Vaga>;
   vaga = new Vaga();
 
@@ -52,7 +52,7 @@ export class AdicionarVagaComponent implements OnInit {
   }
 
   getEscalas() {
-    let endpoint = 'https://localhost:7051/api/escales';
+    let endpoint = 'http://206.189.184.232:5000/api/escales';
     this.apiService.getAll(endpoint).subscribe((data) => {
       this.escalas = data.data;
     });

@@ -1,7 +1,10 @@
 {
   "name": "PlantaoFacil",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }

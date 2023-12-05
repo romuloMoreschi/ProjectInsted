@@ -12,7 +12,7 @@ import { Vaga } from 'src/app/models/Vaga';
   styleUrls: ['./adicionar-escala.component.scss'],
 })
 export class AdicionarEscalaComponent  implements OnInit {
-  private endpoint = 'https://localhost:7051/api/escales';
+  private endpoint = 'http://206.189.184.232:5000/api/escales';
   private apiService: ApiService<Escala>;
   checkboxMarcado = false;
   numeroInclusoes: number = 0 ;
@@ -31,7 +31,7 @@ export class AdicionarEscalaComponent  implements OnInit {
   }
 
   getFuncoes() {
-    let endpoint = 'https://localhost:7051/api/jobs';
+    let endpoint = 'http://206.189.184.232:5000/api/jobs';
     this.apiService.getAll(endpoint).subscribe((data) => {
       this.funcoes = data.data;
     });
@@ -48,14 +48,14 @@ export class AdicionarEscalaComponent  implements OnInit {
   }
 
   enviar() {
-    this.apiService.post(this.escala, this.endpoint).subscribe(
-      async (data) => {
-        await this.mostrarToast('Cadastrado com sucesso!', true);
-      },
-      async (error) => {
-        await this.mostrarToast('Ops, falha ao tentar cadastrar.', false);
-      }
-    );
+    this.apiService.post(this.escala, this.endpoint).subscribe({
+        next: async (data) => {
+          await this.mostrarToast(data.message, true);
+        },
+        error: async (error) => {
+          await this.mostrarToast('Ops, falha ao tentar cadastrar.', false);
+        }
+    });
   }
 
   checkboxChanged(event: any) {

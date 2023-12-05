@@ -11,7 +11,7 @@ import { Funcionario } from '../models/Funcionario';
   styleUrls: ['./escala.component.scss']
 })
 export class EscalaComponent implements OnInit {
-  private endpoint = 'https://localhost:7051/api/escales';
+  private endpoint = 'http://206.189.184.232:5000/api/escales';
   private apiService: ApiService<Escala>;
 
   escalas: Escala[] = [];
